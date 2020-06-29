@@ -7,16 +7,12 @@
 $ npm install --save-dev @inc2734/smooth-scroll
 ```
 
-### Load scripts
-
-```
-<script src="/node_modules/@inc2734/smoothscroll/dist/index.js"></script>
-```
-
-### Setting
+### How to use
 
 ```
 <script>
+import { SmoothScroll } from '@inc2734/smooth-scroll';
+
 new SmoothScroll(
   {
     target: 'a[href^="#"]',
