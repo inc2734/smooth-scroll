@@ -1,0 +1,47 @@
+import forEachHtmlNodes from '@inc2734/for-each-html-nodes';
+
+export class SmoothScroll {
+
+  constructor(params = {}) {
+    const defaultParams = {
+      selector: undefined,
+      offset: 0,
+    };
+
+    this.settings = { ...defaultParams, ...params };
+
+    const targets = document.querySelectorAll(this.settings.selector);
+    forEachHtmlNodes(targets, (target) => this.apply(target));
+  }
+
+  apply(target) {
+    target.addEventListener('click', (event) => this.handleClick(event), false);
+  }
+
+  handleClick(event) {
+    const targetPermalink   = event.currentTarget.href.split('#')[0];
+    const locationPermalink = window.location.href.split('#')[0];
+    if (targetPermalink !== locationPermalink) {
+      return true;
+    }
+
+    event.preventDefault();
+
+    const hash   = event.currentTarget.hash.split('%').join('\\%').split('(').join('\\(').split(')').join('\\)');
+    const anchor = document.querySelector(hash);
+    if (! anchor ) {
+      return false;
+    }
+
+    const rectTop   = anchor.getBoundingClientRect().top;
+    const scrollTop = window.pageYOffset
+    const offset    = 'function' === typeof this.settings.offset ? this.settings.offset() : this.settings.offset;
+
+    window.scrollTo(
+      {
+        top: rectTop + scrollTop - offset,
+        behavior: 'smooth',
+      }
+    );
+  }
+}
