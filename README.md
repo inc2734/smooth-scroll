@@ -10,7 +10,7 @@ $ yarn add @inc2734/smooth-scroll
 ### Load scripts
 
 ```
-<script src="/node_modules/@inc2734/smoothscroll/dist/smooth-scroll.js"></script>
+<script src="/node_modules/@inc2734/smoothscroll/dist/index.js"></script>
 ```
 
 ### Setting
