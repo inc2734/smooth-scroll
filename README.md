@@ -4,7 +4,7 @@
 
 ### Install
 ```
-$ yarn add @inc2734/smooth-scroll
+$ npm install --save-dev @inc2734/smooth-scroll
 ```
 
 ### Load scripts
