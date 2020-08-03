@@ -33,6 +33,8 @@ export class SmoothScroll {
       return false;
     }
 
+    window.history.pushState('', '', hash);
+
     const rectTop   = anchor.getBoundingClientRect().top;
     const scrollTop = window.pageYOffset
     const offset    = 'function' === typeof this.settings.offset ? this.settings.offset() : this.settings.offset;
