@@ -1,4 +1,6 @@
 import forEachHtmlNodes from '@inc2734/for-each-html-nodes';
+import smoothscroll from 'smoothscroll-polyfill';
+smoothscroll.polyfill();
 
 export class SmoothScroll {
 
