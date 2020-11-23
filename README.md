@@ -15,7 +15,7 @@ import { SmoothScroll } from '@inc2734/smooth-scroll';
 
 new SmoothScroll(
   {
-    target: 'a[href^="#"]',
+    selector: 'a[href^="#"]',
     offset: 100,
   }
 );
