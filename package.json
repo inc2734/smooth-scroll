@@ -3,10 +3,10 @@
   "version": "1.0.2",
   "author": "inc2734",
   "contributors": {
-    {
+    [
       "name": "shodoi",
       "url": "https://github.com/shodoi"
-    }
+    ]
   },
   "license": "MIT",
   "repository": {
