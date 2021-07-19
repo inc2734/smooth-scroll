@@ -2,6 +2,12 @@
   "name": "@inc2734/smooth-scroll",
   "version": "1.0.3",
   "author": "inc2734",
+  "contributors": [
+    {
+      "name": "shodoi",
+      "url": "https://github.com/shodoi"
+    }
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
