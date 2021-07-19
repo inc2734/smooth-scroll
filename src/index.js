@@ -41,6 +41,11 @@ export class SmoothScroll {
     const scrollTop = window.pageYOffset
     const offset    = 'function' === typeof this.settings.offset ? this.settings.offset() : this.settings.offset;
 
+    if (document.activeElement !== anchor) {
+      anchor.tabIndex = -1
+      anchor.focus();
+    }
+
     window.scrollTo(
       {
         top: rectTop + scrollTop - offset,

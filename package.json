@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/inc2734/smooth-scroll"
   },
-  "main": "src/index.js",
+  "main": "./src/index.js",
   "keywords": [
     "scrollbar",
     "scroll",
@@ -23,19 +23,19 @@
     "webpack.config.js"
   ],
   "devDependencies": {
-    "@babel/core": "^7.11.0",
-    "@babel/preset-env": "^7.11.0",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
     "@inc2734/for-each-html-nodes": "^0.4.0",
-    "babel-loader": "^8.1.0",
-    "browser-sync": "^2.26.12",
+    "babel-loader": "^8.2.2",
+    "browser-sync": "^2.27.4",
     "rimraf": "^3.0.2",
     "smoothscroll-polyfill": "^0.4.4",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2"
   },
   "scripts": {
     "cleanup": "rimraf dist && mkdir dist",
-    "js": "npm run cleanup && webpack src/index.js -o dist/index.js --config webpack.config.js",
+    "js": "npm run cleanup && npx webpack --entry ./src/index.js -o ./dist --config webpack.config.js",
     "build": "npm run js"
   }
 }
