@@ -17,18 +17,24 @@ export class SmoothScroll {
   }
 
   apply(target) {
-    target.addEventListener('click', (event) => this.handleClick(event), false);
+    target.addEventListener(
+      'click',
+      (event) => {
+        console.log(event);
+        const targetPermalink   = event.currentTarget.href.split('#')[0];
+        const locationPermalink = window.location.href.split('#')[0];
+        if (targetPermalink !== locationPermalink) {
+          return true;
+        }
+
+        event.preventDefault();
+        this.handleClick(event);
+      },
+      false
+    );
   }
 
   handleClick(event) {
-    const targetPermalink   = event.currentTarget.href.split('#')[0];
-    const locationPermalink = window.location.href.split('#')[0];
-    if (targetPermalink !== locationPermalink) {
-      return true;
-    }
-
-    event.preventDefault();
-
     const hash   = event.currentTarget.hash.split('%').join('\\%').split('(').join('\\(').split(')').join('\\)');
     const anchor = document.querySelector(hash);
     if (! anchor ) {
@@ -37,13 +43,38 @@ export class SmoothScroll {
 
     window.history.pushState('', '', hash);
 
-    const rectTop   = anchor.getBoundingClientRect().top;
-    const scrollTop = window.pageYOffset
+    let   rectTop   = anchor.getBoundingClientRect().top;
+    let   scrollTop = window.pageYOffset
     const offset    = 'function' === typeof this.settings.offset ? this.settings.offset() : this.settings.offset;
 
+    let scrollTimerId = null;
+    const handleScroll = () => {
+      clearTimeout(scrollTimerId);
+      const newRectTop   = anchor.getBoundingClientRect().top;
+      const newScrollTop = window.pageYOffset;
+
+      if (scrollTop > newScrollTop || offset > Math.round(newRectTop)) {
+        scrollTimerId = null;
+        window.removeEventListener('scroll', handleScroll, false);
+        return;
+      }
+
+      scrollTop     = newScrollTop;
+      scrollTimerId = setTimeout(
+        () => {
+          scrollTimerId = null;
+          window.removeEventListener('scroll', handleScroll, false);
+
+          anchor.tabIndex = -1
+          anchor.focus();
+        },
+        100
+      );
+    };
+
     if (document.activeElement !== anchor) {
-      anchor.tabIndex = -1
-      anchor.focus();
+      scrollTop = window.pageYOffset;
+      window.addEventListener('scroll', handleScroll, false);
     }
 
     window.scrollTo(
