@@ -20,7 +20,6 @@ export class SmoothScroll {
     target.addEventListener(
       'click',
       (event) => {
-        console.log(event);
         const targetPermalink   = event.currentTarget.href.split('#')[0];
         const locationPermalink = window.location.href.split('#')[0];
         if (targetPermalink !== locationPermalink) {
