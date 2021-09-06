@@ -65,7 +65,7 @@ export class SmoothScroll {
           window.removeEventListener('scroll', handleScroll, false);
 
           anchor.tabIndex = -1
-          anchor.focus();
+          anchor.focus({ preventScroll: true });
         },
         100
       );

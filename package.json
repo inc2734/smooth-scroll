@@ -21,7 +21,6 @@
   ],
   "files": [
     "src",
-    "dist",
     "package.json",
     "package-lock.json",
     "LICENSE",
@@ -29,19 +28,16 @@
     "webpack.config.js"
   ],
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.4",
     "@inc2734/for-each-html-nodes": "^0.4.0",
     "babel-loader": "^8.2.2",
     "browser-sync": "^2.27.5",
     "rimraf": "^3.0.2",
     "smoothscroll-polyfill": "^0.4.4",
-    "webpack": "^5.50.0",
+    "webpack": "^5.52.0",
     "webpack-cli": "^4.8.0"
   },
   "scripts": {
-    "cleanup": "rimraf dist && mkdir dist",
-    "js": "npm run cleanup && npx webpack --entry ./src/index.js -o ./dist --config webpack.config.js",
-    "build": "npm run js"
   }
 }
