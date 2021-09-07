@@ -42,43 +42,11 @@ export class SmoothScroll {
 
     window.history.pushState('', '', hash);
 
-    let   rectTop   = anchor.getBoundingClientRect().top;
-    let   scrollTop = window.pageYOffset
-    const offset    = 'function' === typeof this.settings.offset ? this.settings.offset() : this.settings.offset;
-
-    let scrollTimerId = null;
-    const handleScroll = () => {
-      clearTimeout(scrollTimerId);
-      const newRectTop   = anchor.getBoundingClientRect().top;
-      const newScrollTop = window.pageYOffset;
-
-      if (scrollTop > newScrollTop || offset > Math.round(newRectTop)) {
-        scrollTimerId = null;
-        window.removeEventListener('scroll', handleScroll, false);
-        return;
-      }
-
-      scrollTop     = newScrollTop;
-      scrollTimerId = setTimeout(
-        () => {
-          scrollTimerId = null;
-          window.removeEventListener('scroll', handleScroll, false);
-
-          anchor.tabIndex = -1
-          anchor.focus({ preventScroll: true });
-        },
-        100
-      );
-    };
-
-    if (document.activeElement !== anchor) {
-      scrollTop = window.pageYOffset;
-      window.addEventListener('scroll', handleScroll, false);
-    }
+    const offset = 'function' === typeof this.settings.offset ? this.settings.offset() : this.settings.offset;
 
     window.scrollTo(
       {
-        top: rectTop + scrollTop - offset,
+        top: anchor.getBoundingClientRect().top + window.pageYOffset - offset,
         behavior: 'smooth',
       }
     );
