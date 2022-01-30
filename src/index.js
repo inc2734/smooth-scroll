@@ -34,8 +34,8 @@ export class SmoothScroll {
   }
 
   handleClick(event) {
-    const hash   = decodeURI(event.currentTarget.hash);
-    const anchor = document.querySelector(hash);
+    const hash   = event.currentTarget.hash;
+    const anchor = document.getElementById(decodeURI(hash).replace(/^#/, ''));
     if (! anchor ) {
       return false;
     }
