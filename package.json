@@ -4,7 +4,7 @@
     "npm": ">=6.9.0 <7"
   },
   "name": "@inc2734/smooth-scroll",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "author": "inc2734",
   "contributors": [
     {
