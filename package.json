@@ -1,4 +1,8 @@
 {
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.9.0 <7"
+  },
   "name": "@inc2734/smooth-scroll",
   "version": "1.0.9",
   "author": "inc2734",
@@ -21,22 +25,30 @@
   ],
   "files": [
     "src",
-    "package.json",
-    "package-lock.json",
+    "dist",
     "LICENSE",
-    "README.md",
-    "webpack.config.js"
+    "README.md"
   ],
   "devDependencies": {
-    "@babel/core": "^7.16.10",
-    "@babel/preset-env": "^7.16.10",
-    "@inc2734/for-each-html-nodes": "^0.4.0",
-    "babel-loader": "^8.2.3",
-    "browser-sync": "^2.27.7",
-    "rimraf": "^3.0.2",
-    "smoothscroll-polyfill": "^0.4.4",
-    "webpack": "^5.66.0",
-    "webpack-cli": "^4.9.1"
+    "@babel/core": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-node-resolve": "^14.1.0",
+    "@wordpress/browserslist-config": "^5.1.0",
+    "autoprefixer": "^10.4.12",
+    "browserslist": "^4.21.4",
+    "rollup": "^2.79.1",
+    "rollup-plugin-uglify": "^6.0.4",
+    "cpy-cli": "^4.2.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
   },
-  "scripts": {}
+  "scripts": {
+    "prepublish": "npm run build",
+    "start": "npm run build",
+    "clean:js": "rimraf dist && mkdir -p dist",
+    "js:build": "rollup -c",
+    "js": "npm-run-all -s clean:js js:build",
+    "build": "npm run js"
+  }
 }

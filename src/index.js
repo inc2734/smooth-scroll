@@ -43,10 +43,12 @@ export class SmoothScroll {
     window.history.pushState('', '', hash);
 
     const offset = 'function' === typeof this.settings.offset ? this.settings.offset() : this.settings.offset;
+    let top = anchor.getBoundingClientRect().top + window.pageYOffset - offset;
+    top = 0 > parseInt(top) ? 0 : top;
 
     window.scrollTo(
       {
-        top: anchor.getBoundingClientRect().top + window.pageYOffset - offset,
+        top,
         behavior: 'smooth',
       }
     );
